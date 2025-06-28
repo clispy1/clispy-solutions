@@ -6,7 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 const baiSans = Bai_Jamjuree({
     variable: "--font-bai-sans",
-    // subsets: ["latin"],
+    subsets: ["latin", "latin-ext", "thai", "vietnamese"],
     weight: ["200", "300", "400", "500", "600", "700"],
 });
 
