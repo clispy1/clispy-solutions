@@ -1,0 +1,46 @@
+export const agencyInfo = {
+    name: "Clispy Solutions",
+    tagline: "Where Bold Digital Experiences Come to Life",
+    description:
+        "A leading creative agency specializing in web design, development, and brand identity. We help businesses transform their vision into powerful digital solutions that drive measurable growth and success.",
+    founded: "2022",
+    location: "Ghana",
+    email: "hello@clispysolutions.com",
+    phone: "+233 20 660 1059",
+    website: "https://clispysolutions.com",
+    social: {
+        github: "https://github.com/clispysolutions",
+        twitter: "https://twitter.com/clispysolutions",
+        linkedin: "https://linkedin.com/company/clispysolutions",
+        instagram: "https://instagram.com/clispysolutions",
+    },
+    stats: {
+        clients: "25+",
+        projects: "30+",
+        experience: "3+",
+        teamSize: "3",
+    },
+    founder: {
+        name: "Jake Asare (Clispy)",
+        title: "Founder & Creative Director",
+        bio: "I began my journey as an Electrical Engineer, right from college. After a while, I got curious about the digital world and started learning about it. I started as a graphic designer, and later switched into web development and design. 2 years later, I founded Clispy Solutions to provide my design and development services. And as a side hustle, I founded and run a preorder dropshipping online store — 'CLISPY.STORE'",
+    },
+    services: [
+        "Web Design & Development",
+        "E-commerce Solutions",
+        "Brand Identity Design",
+        "UI/UX Design",
+        "Graphic Design",
+        "Digital Marketing",
+    ],
+    industries: [
+        "Technology",
+        "E-commerce",
+        "Real Estate",
+        "Healthcare",
+        "Education",
+        "Food & Beverage",
+        "Non-Profit",
+        "Professional Services",
+    ],
+};
