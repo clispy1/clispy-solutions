@@ -65,6 +65,7 @@ export default function ContactSection() {
                 timeline: "",
             });
         } catch (error) {
+            console.log(error);
             setSubmitStatus("error");
         } finally {
             setIsSubmitting(false);
