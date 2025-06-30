@@ -27,7 +27,7 @@ const pricingPlans = [
         subtitle:
             "For service businesses, professionals, and startups who need a clean, trust-building website — fast.",
         price: "₵3,500",
-        delivery: "14–21 days",
+        delivery: "7–10 days",
         payment: "70% upfront",
         color: "from-blue-500 to-cyan-500",
         features: [
@@ -48,7 +48,7 @@ const pricingPlans = [
         subtitle:
             "For serious entrepreneurs who want to look like a real business, not just a WhatsApp flyer.",
         price: "₵2,000",
-        delivery: "7–10 days",
+        delivery: "14–21 days",
         payment: "50% upfront",
         color: "from-purple-500 to-pink-500",
         features: [
