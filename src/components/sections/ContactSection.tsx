@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { agencyInfo } from "@/data/agency";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function ContactSection() {
     const [formData, setFormData] = useState({
@@ -189,28 +190,22 @@ export default function ContactSection() {
                                                 Select budget range
                                             </option>
                                             <option
-                                                value="under-5k"
+                                                value="under-4k"
                                                 className="bg-slate-800"
                                             >
-                                                Under $5,000
+                                                Under ¢4,000
                                             </option>
                                             <option
                                                 value="5k-10k"
                                                 className="bg-slate-800"
                                             >
-                                                $5,000 - $10,000
-                                            </option>
-                                            <option
-                                                value="10k-25k"
-                                                className="bg-slate-800"
-                                            >
-                                                $10,000 - $25,000
+                                                ¢4,000 - ¢8,000
                                             </option>
                                             <option
                                                 value="25k-plus"
                                                 className="bg-slate-800"
                                             >
-                                                $25,000+
+                                                ¢8,000+
                                             </option>
                                         </select>
                                     </div>
@@ -263,10 +258,10 @@ export default function ContactSection() {
                                                 UI/UX Design
                                             </option>
                                             <option
-                                                value="consultation"
+                                                value="it-services"
                                                 className="bg-slate-800"
                                             >
-                                                Strategy Consultation
+                                                I.T Services
                                             </option>
                                             <option
                                                 value="other"
@@ -303,22 +298,22 @@ export default function ContactSection() {
                                                 ASAP
                                             </option>
                                             <option
-                                                value="1-month"
+                                                value="2-weeks"
                                                 className="bg-slate-800"
                                             >
-                                                Within 1 month
+                                                Within 2 weeks
                                             </option>
                                             <option
-                                                value="2-3-months"
+                                                value="2-3-weeks"
                                                 className="bg-slate-800"
                                             >
-                                                2-3 months
+                                                2-3 weeks
                                             </option>
                                             <option
-                                                value="3-plus-months"
+                                                value="1-plus-months"
                                                 className="bg-slate-800"
                                             >
-                                                3+ months
+                                                1+ months
                                             </option>
                                             <option
                                                 value="flexible"
@@ -462,7 +457,7 @@ export default function ContactSection() {
                                             Within 12 hours
                                         </p>
                                         <p className="text-subtle text-xs">
-                                            Monday - Friday, 9AM - 6PM GMT
+                                            Monday - Saturdays, 9AM - 9PM GMT
                                         </p>
                                     </div>
                                 </div>
@@ -532,9 +527,16 @@ export default function ContactSection() {
                                 Have an urgent project or question? Reach out to
                                 us on WhatsApp anytime. Here for you.
                             </p>
-                            <Button className="w-full btn-primary py-3">
-                                <MessageCircleMore /> WhatsApp Clispy
+                            <Button className="w-full btn-primary py-3" asChild>
+                       <Link
+                                href="https://wa.me/233206601059"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex gap-2 justify-center items-center cursor-pointer"
+                            >
+                                <MessageCircleMore /> WhatsApp Us
                                 <ArrowRight className="ml-2 h-4 w-4" />
+                            </Link>
                             </Button>
                         </Card>
                     </motion.div>

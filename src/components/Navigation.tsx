@@ -10,20 +10,21 @@ import {
     User,
     Briefcase,
     Code,
-    MessageCircle,
     Sparkles,
+    PhoneCall,
 } from "lucide-react";
-import { agencyInfo } from "@/data/agency";
+// import { agencyInfo } from "@/data/agency";
 import Image from "next/image";
+import Link from "next/link";
 
 const navItems = [
-    { href: "#home", label: " ", icon: Home },
+    { href: "#home", label: "", icon: Home },
     { href: "#about", label: "About Us", icon: User },
     { href: "#packages", label: "Packages", icon: Sparkles },
-    { href: "#projects", label: "Our Work", icon: Briefcase },
-    { href: "#services", label: "Our Services", icon: Code },
+    { href: "#projects", label: "Works", icon: Briefcase },
+    { href: "#services", label: "Services", icon: Code },
     { href: "#testimonials", label: "Testimonials", icon: Users },
-    { href: "#contact", label: "Contact Us", icon: MessageCircle },
+    { href: "#contact", label: "Contact", icon: PhoneCall },
 ];
 
 export default function Navigation() {
@@ -81,22 +82,35 @@ export default function Navigation() {
 
     return (
         <>
+            {/* Mobile Logo */}
+            <div className="absolute top-4 left-4 rounded-(--radius) neon-glass-card md:hidden border p-2 w-20 border-white/10 justify-self-start">
+                <Link href="/">
+                    <Image
+                        src="/clispy-solutions-logo.png"
+                        width={200}
+                        height={200}
+                        alt="Clispy Solutions"
+                        className="w-full"
+                    />
+                </Link>
+            </div>
+
             {/* Desktop Navigation */}
             <motion.nav
-                className="fixed top-6 transform z-50 hidden md:block"
+                className="fixed top-4 transform z-50 hidden md:block"
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
             >
                 <motion.div
                     className={`
-            flex items-center space-x-1 px-6 py-3 rounded-full
+            flex items-center space-x-1 px-6 py-3 rounded-(--radius)
             backdrop-blur-lg transition-all duration-300 neon-glass-card
             ${isScrolled ? "bg-black/80" : "bg-white/10"}
           `}
                     animate={{
                         scale: isScrolled ? 0.95 : 1,
-                        y: isScrolled ? 5 : 0,
+                        y: isScrolled ? -5 : 0,
                     }}
                     transition={{ duration: 0.3 }}
                 >
@@ -114,9 +128,6 @@ export default function Navigation() {
                                 className="w-full"
                             />
                         </div>
-                        {/* <span className="text-white font-semibold text-sm">
-                            {agencyInfo.name}
-                        </span> */}
                     </motion.div>
 
                     {/* Navigation Items */}
@@ -129,7 +140,7 @@ export default function Navigation() {
                                 key={item.href}
                                 onClick={() => handleNavClick(item.href)}
                                 className={`
-                  relative flex items-center space-x-2 px-4 py-2 rounded-full
+                  relative flex items-center gap-2 px-2 lg:px-4 py-2 rounded-(--radius)
                   transition-all duration-300 group cursor-pointer
                   ${isActive ? "text-white" : "text-white/70 hover:text-white"}
                 `}
@@ -145,14 +156,14 @@ export default function Navigation() {
                                 >
                                     <item.icon className="w-4 h-4" />
                                 </motion.div>
-                                <span className="text-sm font-medium">
+                                <span className="text-sm font-medium hidden lg:inline-block">
                                     {item.label}
                                 </span>
 
                                 {/* Active Indicator */}
                                 {isActive && (
                                     <motion.div
-                                        className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-full border border-cyan-500/30"
+                                        className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-(--radius) border border-cyan-500/30"
                                         layoutId="activeTab"
                                         transition={{
                                             type: "spring",
@@ -211,21 +222,6 @@ export default function Navigation() {
                     style={{ pointerEvents: isOpen ? "auto" : "none" }}
                 >
                     <div className="bg-black/90 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden neon-glass-card">
-                        {/* Mobile Logo */}
-                        <div className="flex items-center space-x-3 p-4 border-b border-white/10">
-                            <div className="w-10 h-10 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full flex items-center justify-center">
-                                <span className="text-white font-bold">CS</span>
-                            </div>
-                            <div>
-                                <div className="text-white font-semibold">
-                                    {agencyInfo.name}
-                                </div>
-                                <div className="text-white/60 text-sm">
-                                    {agencyInfo.tagline}
-                                </div>
-                            </div>
-                        </div>
-
                         {/* Mobile Navigation Items */}
                         <div className="p-2">
                             {navItems.map((item, index) => {

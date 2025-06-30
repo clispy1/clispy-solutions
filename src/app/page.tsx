@@ -22,7 +22,7 @@ import Loading from "./loading";
 
 export default function Portfolio() {
     return (
-        <div className="min-h-screen body-view">
+        <div className="min-h-screen body-view relative">
             <div className="fixed top-2 z-50 w-full height-[100%] flex items-center justify-center">
                 <Navigation />
             </div>
@@ -74,11 +74,11 @@ export default function Portfolio() {
                 <div id="timeline">
                     <TimelineSection />
                 </div>
+
                 <div id="businesses">
                     <BusinessesSection />
                 </div>
-           
-            
+
                 <div id="blog">
                     <BlogSection />
                 </div>

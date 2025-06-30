@@ -26,7 +26,7 @@ const staggerContainer = {
 
 export default function SolutionSection() {
     return (
-        <section id="services" className="section-padding neon-bg-pattern">
+        <section className="section-padding neon-bg-pattern">
             <div className="container-custom">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}

@@ -9,10 +9,10 @@ export const agencyInfo = {
     phone: "+233 20 660 1059",
     website: "https://clispysolutions.com",
     social: {
-        github: "https://github.com/clispysolutions",
-        twitter: "https://twitter.com/clispysolutions",
-        linkedin: "https://linkedin.com/company/clispysolutions",
-        instagram: "https://instagram.com/clispysolutions",
+        github: "https://github.com/clispy1",
+        twitter: "https://twitter.com/clispy_jake",
+        linkedin: "https://linkedin.com/company/jerome-asare",
+        instagram: "https://instagram.com/jake_clispy",
     },
     stats: {
         clients: "25+",

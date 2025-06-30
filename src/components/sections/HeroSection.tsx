@@ -1,60 +1,18 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowRight, Users, Award, Sparkles, Play } from "lucide-react";
+import { ArrowRight, Users, Award, Sparkles, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { agencyInfo } from "@/data/agency";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function HeroSection() {
-    // const containerVariants = {
-    //     hidden: {},
-    //     visible: {
-    //         transition: {
-    //             staggerChildren: 0.15,
-    //             delayChildren: 0.2,
-    //         },
-    //     },
-    // };
+const fadeVariant = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+};
 
-    // const itemVariants = {
-    //     hidden: { opacity: 0, y: 20 },
-    //     visible: {
-    //         opacity: 1,
-    //         y: 0,
-    //         transition: {
-    //             duration: 0.6,
-    //             ease: [0.25, 0.46, 0.45, 0.94],
-    //         },
-    //     },
-    // };
-
-    // const imageVariants = {
-    //     hidden: { opacity: 0, scale: 0.95 },
-    //     visible: {
-    //         opacity: 1,
-    //         scale: 1,
-    //         transition: {
-    //             duration: 0.8,
-    //             ease: [0.25, 0.46, 0.45, 0.94],
-    //         },
-    //     },
-    // };
-
-    const scrollToContact = () => {
-        const contactSection = document.getElementById("contact");
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: "smooth" });
-        }
-    };
-
-    const scrollToWork = () => {
-        const projectsSection = document.getElementById("projects");
-        if (projectsSection) {
-            projectsSection.scrollIntoView({ behavior: "smooth" });
-        }
-    };
-
+const HeroSection = () => {
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 section-padding">
             {/* Background */}
@@ -67,17 +25,15 @@ export default function HeroSection() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh]">
                     {/* Left Content */}
                     <motion.div
-                        // variants={containerVariants}
+                        variants={fadeVariant}
                         initial="hidden"
                         animate="visible"
+                        transition={{ duration: 0.6 }}
                         className="text-center lg:text-left space-content"
                     >
                         {/* Badge */}
-                        <motion.div
-                            // variants={itemVariants}
-                            className="inline-flex"
-                        >
-                            <div className="inline-flex items-center px-4 py-2 rounded-full neon-glass-card">
+                        <motion.div className="inline-flex">
+                            <div className="inline-flex items-center px-4 py-2 rounded-(--radius) neon-glass-card relative overflow-visible">
                                 <Sparkles className="w-4 h-4 text-primary mr-2" />
                                 <span className="text-white/80 text-sm font-medium">
                                     {agencyInfo.name} • Est.{" "}
@@ -87,18 +43,14 @@ export default function HeroSection() {
                         </motion.div>
 
                         {/* Main Heading */}
-                        <motion.div
-                            // variants={itemVariants}
-                            className="space-y-4"
-                        >
+                        <div className="space-y-4">
                             <h1 className="heading-xl">
-                                <span className="block ">
+                                <span className="block">
                                     Your Business Deserves More Than Just a Logo
                                     and an Instagram Page.
                                 </span>
                             </h1>
                             <div className="space-y-2">
-                                {/* Description */}
                                 <p className="text-responsive text-white/90 font-light">
                                     We build custom websites and brand
                                     identities that help you look legit, sell
@@ -109,13 +61,10 @@ export default function HeroSection() {
                                     Founded & Led by {agencyInfo.founder.name}
                                 </p>
                             </div>
-                        </motion.div>
+                        </div>
 
                         {/* Stats */}
-                        <motion.div
-                            // variants={itemVariants}
-                            className="grid grid-cols-4 gap-4 py-6 max-w-lg mx-auto lg:mx-0"
-                        >
+                        <div className="grid grid-cols-4 gap-4 py-6 max-w-lg mx-auto lg:mx-0">
                             {[
                                 {
                                     number: agencyInfo.stats.projects,
@@ -137,10 +86,10 @@ export default function HeroSection() {
                                     label: "Team",
                                     icon: Users,
                                 },
-                            ].map((stat, index) => (
+                            ].map((stat, i) => (
                                 <motion.div
-                                    key={index}
-                                    className="text-center neon-glass-card rounded-xl p-3 hover-lift"
+                                    key={i}
+                                    className="text-center neon-glass-card rounded-xl p-3 hover-lift relative overflow-visible"
                                     whileHover={{ scale: 1.05 }}
                                     transition={{
                                         type: "spring",
@@ -156,36 +105,46 @@ export default function HeroSection() {
                                     </div>
                                 </motion.div>
                             ))}
-                        </motion.div>
+                        </div>
 
                         {/* CTA Buttons */}
-                        <motion.div
-                            // variants={itemVariants}
-                            className="flex-responsive justify-center lg:justify-start"
-                        >
+                        <div className="flex-responsive justify-center lg:justify-start space-x-4">
                             <Button
-                                onClick={scrollToWork}
                                 size="lg"
                                 className="group btn-primary px-8 py-4 text-base font-semibold focus-visible"
+                                asChild
                             >
-                                <span>View Recent Projects</span>
-                                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                                <Link
+                                    href="#projects"
+                                    className="flex items-center"
+                                >
+                                    View Recent Projects
+                                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                                </Link>
                             </Button>
 
                             <Button
-                                onClick={scrollToContact}
                                 variant="outline"
                                 size="lg"
                                 className="group btn-secondary px-8 py-4 text-base font-medium focus-visible"
+                                asChild
                             >
-                                <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform hover-glow" />
-                                <span>Let&apos;s Build Something Real</span>
+                                <Link
+                                    href="#contact"
+                                    className="flex items-center"
+                                >
+                                    <PhoneCall className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform hover-glow" />
+                                    Let&apos;s Build Something Real
+                                </Link>
                             </Button>
-                        </motion.div>
+                        </div>
 
                         {/* Social Proof */}
-                        <motion.div
-                            // variants={itemVariants}
+                        {/* <motion.div
+                            variants={fadeVariant}
+                            initial="hidden"
+                            animate="visible"
+                            transition={{ delay: 0.8, duration: 0.6 }}
                             className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4 justify-center lg:justify-start"
                         >
                             <div
@@ -220,15 +179,15 @@ export default function HeroSection() {
                                     </span>
                                 </div>
                             </div>
-                        </motion.div>
+                        </motion.div> */}
                     </motion.div>
 
                     {/* Right Content */}
                     <motion.div
-                        // variants={imageVariants}
-                        initial="hidden"
-                        animate="visible"
-                        className="relative h-80 sm:h-96 lg:h-[500px] flex items-center justify-center order-first lg:order-last"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3, duration: 0.6 }}
+                        className="relative h-80 sm:h-96 lg:h-[550px] flex items-center justify-center order-first lg:order-last"
                     >
                         <div className="relative w-full max-w-sm sm:max-w-md h-full">
                             <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-purple-500/5 rounded-3xl blur-2xl scale-110" />
@@ -241,15 +200,6 @@ export default function HeroSection() {
                                     alt="Hero Image"
                                     className="w-full lg:w-auto h-full object-cover"
                                 />
-                                {/* <motion.div
-                                    className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 bg-gradient-to-br from-cyan-400 to-purple-500 rounded-full flex items-center justify-center shadow-xl border border-red"
-                                    whileHover={{ scale: 1.05 }}
-                                    transition={{ duration: 0.3 }}
-                                    role="img"
-                                    aria-label="Clispy Solutions logo"
-                                >
-                                  
-                                </motion.div> */}
 
                                 <motion.div
                                     className="absolute top-4 sm:top-8 right-4 sm:right-8 px-3 py-2 neon-glass-card rounded-full"
@@ -274,12 +224,13 @@ export default function HeroSection() {
                                 </motion.div>
                             </div>
 
+                            {/* Decorative Animations */}
                             <motion.div
                                 className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-2xl"
                                 animate={{ rotate: [0, 360] }}
                                 transition={{
                                     duration: 20,
-                                    repeat: Number.POSITIVE_INFINITY,
+                                    repeat: Infinity,
                                     ease: "linear",
                                 }}
                                 aria-hidden="true"
@@ -290,7 +241,7 @@ export default function HeroSection() {
                                 animate={{ scale: [1, 1.1, 1] }}
                                 transition={{
                                     duration: 4,
-                                    repeat: Number.POSITIVE_INFINITY,
+                                    repeat: Infinity,
                                     ease: "easeInOut",
                                 }}
                                 aria-hidden="true"
@@ -302,27 +253,23 @@ export default function HeroSection() {
 
             {/* Scroll Indicator */}
             <motion.div
-                className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex flex-col items-center justify-center"
+                className="absolute hidden lg:flex bottom-4 left-1/2 transform -translate-x-1/2 flex-col items-center justify-center"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2 }}
+                transition={{ delay: 2, duration: 0.6 }}
             >
                 <motion.div
                     className="w-6 h-10 border border-white/20 rounded-full flex justify-center cursor-pointer"
                     animate={{ y: [0, 5, 0] }}
                     transition={{
                         duration: 2,
-                        repeat: Number.POSITIVE_INFINITY,
+                        repeat: Infinity,
                         ease: "easeInOut",
                     }}
                     onClick={() => {
                         const servicesSection =
                             document.getElementById("services");
-                        if (servicesSection) {
-                            servicesSection.scrollIntoView({
-                                behavior: "smooth",
-                            });
-                        }
+                        servicesSection?.scrollIntoView({ behavior: "smooth" });
                     }}
                     role="button"
                     aria-label="Scroll to services section"
@@ -331,11 +278,9 @@ export default function HeroSection() {
                         if (e.key === "Enter" || e.key === " ") {
                             const servicesSection =
                                 document.getElementById("services");
-                            if (servicesSection) {
-                                servicesSection.scrollIntoView({
-                                    behavior: "smooth",
-                                });
-                            }
+                            servicesSection?.scrollIntoView({
+                                behavior: "smooth",
+                            });
                         }
                     }}
                 >
@@ -347,4 +292,6 @@ export default function HeroSection() {
             </motion.div>
         </section>
     );
-}
+};
+
+export default HeroSection;

@@ -110,7 +110,7 @@ export default function PricingSection() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="heading-lg mb-6 neon-text">
+                    <h2 className="heading-lg mb-6 text-white">
                         Pick What You Actually Need. We&apos;ll Build It.
                     </h2>
                     <p className="text-responsive text-white/70 max-w-3xl mx-auto">
@@ -255,7 +255,7 @@ export default function PricingSection() {
                     transition={{ delay: 0.6 }}
                     className="text-center mt-16"
                 >
-                    <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto hover-glow neon-glass-card">
+                    <div className="p-8 max-w-2xl mx-auto neon-glass-card">
                         <h3 className="text-2xl font-bold text-white mb-4">
                             Not sure which package fits?
                         </h3>
