@@ -3,6 +3,7 @@ import { Bai_Jamjuree } from "next/font/google";
 import "./globals.css";
 import { agencyInfo } from "@/data/agency";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Analytics } from "@vercel/analytics/next";
 
 const baiSans = Bai_Jamjuree({
     variable: "--font-bai-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
                 >
                     {children}
                 </ThemeProvider>
+                <Analytics />
             </body>
         </html>
     );

@@ -1,16 +1,9 @@
-"use client";
-
-import { motion } from "motion/react";
+import * as motion from "motion/react-client";
 import { ArrowRight, Users, Award, Sparkles, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { agencyInfo } from "@/data/agency";
 import Image from "next/image";
 import Link from "next/link";
-
-const fadeVariant = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-};
 
 const HeroSection = () => {
     return (
@@ -25,14 +18,11 @@ const HeroSection = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[80vh]">
                     {/* Left Content */}
                     <motion.div
-                        variants={fadeVariant}
-                        initial="hidden"
-                        animate="visible"
-                        transition={{ duration: 0.6 }}
+                        whileInView={"visible"}
                         className="text-center lg:text-left space-content"
                     >
                         {/* Badge */}
-                        <motion.div className="inline-flex">
+                        <motion.div className="inline-flex -mb-2">
                             <div className="inline-flex items-center px-4 py-2 rounded-(--radius) neon-glass-card relative overflow-visible">
                                 <Sparkles className="w-4 h-4 text-primary mr-2" />
                                 <span className="text-white/80 text-sm font-medium">
@@ -53,7 +43,7 @@ const HeroSection = () => {
                             <div className="space-y-2">
                                 <p className="text-responsive text-white/90 font-light">
                                     We build custom websites and brand
-                                    identities that help you look legit, sell
+                                    identities that help you look credible, sell
                                     smarter, and scale faster — without wasting
                                     months or money.
                                 </p>
@@ -90,7 +80,7 @@ const HeroSection = () => {
                                 <motion.div
                                     key={i}
                                     className="text-center neon-glass-card rounded-xl p-3 hover-lift relative overflow-visible"
-                                    whileHover={{ scale: 1.05 }}
+                                    whileHover="hovered"
                                     transition={{
                                         type: "spring",
                                         stiffness: 300,
@@ -184,8 +174,7 @@ const HeroSection = () => {
 
                     {/* Right Content */}
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
+                        whileInView="visible"
                         transition={{ delay: 0.3, duration: 0.6 }}
                         className="relative h-80 sm:h-96 lg:h-[550px] flex items-center justify-center order-first lg:order-last"
                     >
@@ -254,8 +243,7 @@ const HeroSection = () => {
             {/* Scroll Indicator */}
             <motion.div
                 className="absolute hidden lg:flex bottom-4 left-1/2 transform -translate-x-1/2 flex-col items-center justify-center"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+                whileInView="visible"
                 transition={{ delay: 2, duration: 0.6 }}
             >
                 <motion.div
@@ -266,25 +254,13 @@ const HeroSection = () => {
                         repeat: Infinity,
                         ease: "easeInOut",
                     }}
-                    onClick={() => {
-                        const servicesSection =
-                            document.getElementById("services");
-                        servicesSection?.scrollIntoView({ behavior: "smooth" });
-                    }}
                     role="button"
                     aria-label="Scroll to services section"
                     tabIndex={0}
-                    onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                            const servicesSection =
-                                document.getElementById("services");
-                            servicesSection?.scrollIntoView({
-                                behavior: "smooth",
-                            });
-                        }
-                    }}
                 >
-                    <div className="w-1 h-3 bg-white/40 rounded-full mt-2" />
+                    <Link href="#services">
+                        <div className="w-1 h-3 bg-white/40 rounded-full mt-2" />
+                    </Link>
                 </motion.div>
                 <p className="text-subtle text-xs mt-2 text-center">
                     Explore Our Services

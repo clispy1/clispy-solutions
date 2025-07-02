@@ -170,7 +170,7 @@
         mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
         mask-composite: xor;
         -webkit-mask-composite: xor;
-        animation: neon-border 4s ease-in-out infinite;
+        /* animation: neon-border 4s ease-in-out infinite; */
         opacity: 0;
         transition: all 0.3s ease;
         z-index: -1;
