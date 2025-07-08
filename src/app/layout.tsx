@@ -84,6 +84,19 @@ export default function RootLayout({
     return (
         <html lang="en" className="scroll-smooth" suppressHydrationWarning>
             <body className={`${baiSans.variable} antialiased`}>
+                {/* Google Tag Manager */}
+                <Script
+                    src="https://www.googletagmanager.com/gtag/js?id=G-PKW8F9YQMT"
+                    strategy="afterInteractive"
+                />
+                <Script id="gtag-init" strategy="afterInteractive">
+                    {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-PKW8F9YQMT');
+          `}
+                </Script>
                 <ThemeProvider
                     attribute="class"
                     defaultTheme="system"
