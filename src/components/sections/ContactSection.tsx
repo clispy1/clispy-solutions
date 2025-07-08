@@ -2,7 +2,7 @@
 
 import type React from "react";
 
-import { motion } from "motion/react";
+import * as motion from "motion/react-client";
 import {
     ArrowRight,
     Mail,
@@ -83,11 +83,10 @@ export default function ContactSection() {
                     className="text-center mb-16"
                 >
                     <h2 className="heading-lg mb-6 gradient-text">
-                        Let&apos;s Build Something Real For You
+                        {agencyInfo.marketingLines.contact.headline}
                     </h2>
                     <p className="text-responsive text-muted max-w-3xl mx-auto">
-                        Have a project? A vision? Or just tired of running your
-                        business through DMs? Let’s talk.
+                        {agencyInfo.marketingLines.contact.subheadline}
                     </p>
                 </motion.div>
 
@@ -528,15 +527,15 @@ export default function ContactSection() {
                                 us on WhatsApp anytime. Here for you.
                             </p>
                             <Button className="w-full btn-primary py-3" asChild>
-                       <Link
-                                href="https://wa.me/233206601059"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex gap-2 justify-center items-center cursor-pointer"
-                            >
-                                <MessageCircleMore /> WhatsApp Us
-                                <ArrowRight className="ml-2 h-4 w-4" />
-                            </Link>
+                                <Link
+                                    href="https://wa.me/233206601059"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex gap-2 justify-center items-center cursor-pointer"
+                                >
+                                    <MessageCircleMore /> WhatsApp Us
+                                    <ArrowRight className="ml-2 h-4 w-4" />
+                                </Link>
                             </Button>
                         </Card>
                     </motion.div>

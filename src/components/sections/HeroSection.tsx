@@ -1,3 +1,5 @@
+"use client";
+
 import * as motion from "motion/react-client";
 import { ArrowRight, Users, Award, Sparkles, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -23,7 +25,7 @@ const HeroSection = () => {
                     >
                         {/* Badge */}
                         <motion.div className="inline-flex -mb-2">
-                            <div className="inline-flex items-center px-4 py-2 rounded-(--radius) neon-glass-card relative overflow-visible">
+                            <div className="inline-flex items-center px-4 py-2 rounded-lg neon-glass-card relative overflow-visible">
                                 <Sparkles className="w-4 h-4 text-primary mr-2" />
                                 <span className="text-white/80 text-sm font-medium">
                                     {agencyInfo.name} • Est.{" "}
@@ -36,16 +38,12 @@ const HeroSection = () => {
                         <div className="space-y-4">
                             <h1 className="heading-xl">
                                 <span className="block">
-                                    Your Business Deserves More Than Just a Logo
-                                    and an Instagram Page.
+                                    {agencyInfo.marketingLines.hero.headline}
                                 </span>
                             </h1>
                             <div className="space-y-2">
                                 <p className="text-responsive text-white/90 font-light">
-                                    We build custom websites and brand
-                                    identities that help you look credible, sell
-                                    smarter, and scale faster — without wasting
-                                    months or money.
+                                    {agencyInfo.marketingLines.hero.subheadline}
                                 </p>
                                 <p className="text-lg text-primary font-medium">
                                     Founded & Led by {agencyInfo.founder.name}
@@ -128,48 +126,6 @@ const HeroSection = () => {
                                 </Link>
                             </Button>
                         </div>
-
-                        {/* Social Proof */}
-                        {/* <motion.div
-                            variants={fadeVariant}
-                            initial="hidden"
-                            animate="visible"
-                            transition={{ delay: 0.8, duration: 0.6 }}
-                            className="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4 justify-center lg:justify-start"
-                        >
-                            <div
-                                className="flex -space-x-2"
-                                role="group"
-                                aria-label="Client avatars"
-                            >
-                                {[1, 2, 3, 4, 5].map((i) => (
-                                    <div
-                                        key={i}
-                                        className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 border-2 border-slate-900 flex items-center justify-center text-white text-sm font-bold"
-                                        aria-label={`Client ${i}`}
-                                    >
-                                        {String.fromCharCode(65 + i)}
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="text-center sm:text-left">
-                                <div className="text-sm font-medium text-white">
-                                    Trusted by 15+ businesses worldwide
-                                </div>
-                                <div className="flex items-center justify-center sm:justify-start space-x-1 mt-1">
-                                    {[...Array(5)].map((_, i) => (
-                                        <div
-                                            key={i}
-                                            className="w-3 h-3 bg-yellow-400 rounded-full"
-                                            aria-hidden="true"
-                                        />
-                                    ))}
-                                    <span className="text-xs ml-2 text-muted">
-                                        5.0 agency rating
-                                    </span>
-                                </div>
-                            </div>
-                        </motion.div> */}
                     </motion.div>
 
                     {/* Right Content */}

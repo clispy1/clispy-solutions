@@ -34,7 +34,7 @@ export default function Navigation() {
     const { scrollY } = useScroll();
 
     // Handle scroll events
-    useMotionValueEvent(scrollY, "change", (latest) => {
+    useMotionValueEvent(scrollY, "change", (latest: number) => {
         setIsScrolled(latest > 50);
     });
 
@@ -83,10 +83,10 @@ export default function Navigation() {
     return (
         <>
             {/* Mobile Logo */}
-            <div className="absolute top-4 left-4 rounded-(--radius) neon-glass-card md:hidden border p-2 w-20 border-white/10 justify-self-start">
+            <div className="absolute top-4 left-4 rounded-lg neon-glass-card md:hidden border p-2 w-20 border-white/10 justify-self-start">
                 <Link href="/">
                     <Image
-                        src="/clispy-solutions-logo.png"
+                        src="/clispy-solutions-logo-rev.png"
                         width={200}
                         height={200}
                         alt="Clispy Solutions"
@@ -104,7 +104,7 @@ export default function Navigation() {
             >
                 <motion.div
                     className={`
-            flex items-center space-x-1 px-6 py-3 rounded-(--radius)
+            flex items-center space-x-1 px-6 py-3 rounded-lg
             backdrop-blur-lg transition-all duration-300 neon-glass-card
             ${isScrolled ? "bg-black/80" : "bg-white/10"}
           `}
@@ -140,7 +140,7 @@ export default function Navigation() {
                                 key={item.href}
                                 onClick={() => handleNavClick(item.href)}
                                 className={`
-                  relative flex items-center gap-2 px-2 lg:px-4 py-2 rounded-(--radius)
+                  relative flex items-center gap-2 px-2 lg:px-4 py-2 rounded-lg
                   transition-all duration-300 group cursor-pointer
                   ${isActive ? "text-white" : "text-white/70 hover:text-white"}
                 `}
@@ -163,7 +163,7 @@ export default function Navigation() {
                                 {/* Active Indicator */}
                                 {isActive && (
                                     <motion.div
-                                        className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-(--radius) border border-cyan-500/30"
+                                        className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 rounded-lg border border-cyan-500/30"
                                         layoutId="activeTab"
                                         transition={{
                                             type: "spring",

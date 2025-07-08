@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import * as motion from "motion/react-client";
 import { useState } from "react";
 import { ExternalLink, Github, Eye } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";

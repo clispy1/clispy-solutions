@@ -1,5 +1,6 @@
 // "use client";
 import { Suspense } from "react";
+import { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/sections/HeroSection";
 import SolutionSection from "@/components/sections/SolutionSection";
@@ -12,6 +13,7 @@ import TestimonialsSection from "@/components/sections/TestimonialsSection";
 import CTA from "@/components/sections/CTA";
 import ContactSection from "@/components/sections/ContactSection";
 import Footer from "@/components/Footer";
+import { agencyInfo } from "@/data/agency";
 
 import Loading from "./loading";
 
@@ -20,51 +22,62 @@ import Loading from "./loading";
 // import BusinessesSection from "@/components/sections/BusinessesSection";
 // import BlogSection from "@/components/sections/BlogSection";
 
+// Page-specific metadata
+export const metadata: Metadata = {
+    title: `${agencyInfo.name} - Creative Web Design & Development Agency in Ghana`,
+    description: agencyInfo.description,
+    alternates: {
+        canonical: "/",
+    },
+};
+
 export default function Portfolio() {
     return (
         <div className="min-h-screen body-view relative">
-            <div className="fixed top-2 z-50 w-full height-[100%] flex items-center justify-center">
+            <header className="fixed top-2 z-50 w-full h-[100%] flex items-center justify-center">
                 <Navigation />
-            </div>
+            </header>
 
             <Suspense fallback={<Loading />}>
-                <div id="home">
-                    <HeroSection />
-                </div>
-                <div id="about">
-                    <SolutionSection />
-                </div>
-                <div id="about-2">
-                    <AboutSection />
-                </div>
+                <main>
+                    <section id="home" aria-label="Hero Section">
+                        <HeroSection />
+                    </section>
+                    <section id="about" aria-label="About Our Solutions">
+                        <SolutionSection />
+                    </section>
+                    <section id="about-2" aria-label="About Our Company">
+                        <AboutSection />
+                    </section>
 
-                <div id="trusted">
-                    <TrustedBySection />
-                </div>
+                    <section id="trusted" aria-label="Trusted By Our Clients">
+                        <TrustedBySection />
+                    </section>
 
-                <div id="packages">
-                    <PricingSection />
-                </div>
+                    <section id="packages" aria-label="Our Pricing Packages">
+                        <PricingSection />
+                    </section>
 
-                <div id="projects">
-                    <ProjectsSection />
-                </div>
+                    <section id="projects" aria-label="Our Projects">
+                        <ProjectsSection />
+                    </section>
 
-                <div id="services">
-                    <ServicesSection />
-                </div>
+                    <section id="services" aria-label="Our Services">
+                        <ServicesSection />
+                    </section>
 
-                <div id="testimonials">
-                    <TestimonialsSection />
-                </div>
+                    <section id="testimonials" aria-label="Client Testimonials">
+                        <TestimonialsSection />
+                    </section>
 
-                <div id="cta">
-                    <CTA />
-                </div>
+                    <section id="cta" aria-label="Call To Action">
+                        <CTA />
+                    </section>
 
-                <div id="contact">
-                    <ContactSection />
-                </div>
+                    <section id="contact" aria-label="Contact Us">
+                        <ContactSection />
+                    </section>
+                </main>
                 <Footer />
 
                 {/*    <div id="team">
