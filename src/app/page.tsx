@@ -34,8 +34,10 @@ export const metadata: Metadata = {
 export default function Portfolio() {
     return (
         <div className="min-h-screen body-view relative">
-            <header className="fixed top-2 z-50 w-full h-[100%] flex items-center justify-center">
-                <Navigation />
+            <header className="fixed top-2 z-50 w-full flex items-center justify-center pointer-events-none">
+                <div className="pointer-events-auto">
+                    <Navigation />
+                </div>
             </header>
 
             <Suspense fallback={<Loading />}>

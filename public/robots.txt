@@ -1,10 +1,11 @@
-# Allow all crawlers
+# *
 User-agent: *
 Allow: /
+Disallow: /api
 
-# Block crawlers from specific paths
-User-agent: *
-Disallow: /api/
+# Host
+Host: https://clispysolutions.com
 
-# Sitemap location
-Sitemap: https://clispysolutions.com/sitemap.xml 
+# Sitemaps
+Sitemap: https://clispysolutions.com/sitemap.xml
+Sitemap: https://clispysolutions.com/server-sitemap.xml
