@@ -61,8 +61,8 @@ export default function ContactSection() {
         try {
             // Send email using EmailJS
             const result = await emailjs.send(
-                "service_wzyg8ig",
-                "template_akc2t9y",
+                "service_xctx6dr",
+                "template_62ihkyo",
                 {
                     from_name: formData.name,
                     from_email: formData.email,
