@@ -21,7 +21,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { agencyInfo } from "@/data/agency";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import emailjs from "@emailjs/browser";
 
