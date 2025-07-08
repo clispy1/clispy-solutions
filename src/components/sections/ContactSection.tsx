@@ -21,13 +21,19 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { agencyInfo } from "@/data/agency";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import emailjs from "@emailjs/browser";
+
+// Initialize EmailJS with your public key
+// Replace 'YOUR_EMAILJS_PUBLIC_KEY' with your actual EmailJS public key
+emailjs.init("VR4VFsfXO8vYnBV-c");
 
 export default function ContactSection() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        phone: "", // Add phone field
         company: "",
         subject: "",
         message: "",
@@ -53,12 +59,32 @@ export default function ContactSection() {
         setIsSubmitting(true);
 
         try {
-            // Simulate form submission - replace with actual API call
-            await new Promise((resolve) => setTimeout(resolve, 2000));
+            // Send email using EmailJS
+            const result = await emailjs.send(
+                "service_wzyg8ig",
+                "template_akc2t9y",
+                {
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    phone: formData.phone || "Not provided", // Include phone in email
+                    company: formData.company || "Not provided",
+                    subject: formData.subject,
+                    message: formData.message,
+                    budget: formData.budget || "Not specified",
+                    timeline: formData.timeline || "Not specified",
+                    to_email: "hello@clispysolutions.com",
+                }
+            );
+
+            if (result.status !== 200) {
+                throw new Error("Failed to send message");
+            }
+
             setSubmitStatus("success");
             setFormData({
                 name: "",
                 email: "",
+                phone: "", // Reset phone field
                 company: "",
                 subject: "",
                 message: "",
@@ -66,7 +92,7 @@ export default function ContactSection() {
                 timeline: "",
             });
         } catch (error) {
-            console.log(error);
+            console.error("Error sending form:", error);
             setSubmitStatus("error");
         } finally {
             setIsSubmitting(false);
@@ -153,6 +179,23 @@ export default function ContactSection() {
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                                     <div>
                                         <label
+                                            htmlFor="phone"
+                                            className="block text-white text-sm font-medium mb-2"
+                                        >
+                                            Phone Number
+                                        </label>
+                                        <Input
+                                            id="phone"
+                                            name="phone"
+                                            type="tel"
+                                            value={formData.phone}
+                                            onChange={handleInputChange}
+                                            className="bg-white/10 border-white/20 text-white placeholder:text-white/40 focus:border-cyan-400 focus:ring-cyan-400"
+                                            placeholder="Your phone number"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label
                                             htmlFor="company"
                                             className="block text-white text-sm font-medium mb-2"
                                         >
@@ -168,6 +211,9 @@ export default function ContactSection() {
                                             placeholder="Your company name"
                                         />
                                     </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                                     <div>
                                         <label
                                             htmlFor="budget"
@@ -208,9 +254,6 @@ export default function ContactSection() {
                                             </option>
                                         </select>
                                     </div>
-                                </div>
-
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                                     <div>
                                         <label
                                             htmlFor="subject"
@@ -270,6 +313,9 @@ export default function ContactSection() {
                                             </option>
                                         </select>
                                     </div>
+                                </div>
+
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                                     <div>
                                         <label
                                             htmlFor="timeline"

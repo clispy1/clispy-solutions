@@ -12,10 +12,18 @@ import {
     Code,
     Sparkles,
     PhoneCall,
+    Send,
 } from "lucide-react";
-// import { agencyInfo } from "@/data/agency";
+import { agencyInfo } from "@/data/agency";
 import Image from "next/image";
 import Link from "next/link";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import emailjs from "@emailjs/browser";
+
+// Initialize EmailJS with your public key
+// Replace 'YOUR_EMAILJS_PUBLIC_KEY' with your actual EmailJS public key
+emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
 
 const navItems = [
     { href: "#home", label: "", icon: Home },
@@ -31,6 +39,16 @@ export default function Navigation() {
     const [isOpen, setIsOpen] = useState(false);
     const [activeSection, setActiveSection] = useState("home");
     const [isScrolled, setIsScrolled] = useState(false);
+    const [showQuoteModal, setShowQuoteModal] = useState(false);
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [formSuccess, setFormSuccess] = useState(false);
+
     const { scrollY } = useScroll();
 
     // Handle scroll events
@@ -77,6 +95,64 @@ export default function Navigation() {
                 top: targetPosition,
                 behavior: "smooth",
             });
+        }
+    };
+
+    const handleQuoteClick = () => {
+        setShowQuoteModal(true);
+    };
+
+    const handleInputChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmitQuote = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+
+        try {
+            // Send email using EmailJS
+            const result = await emailjs.send(
+                "service_wzyg8ig", // Replace with your EmailJS service ID
+                "template_akc2t9y", // Replace with your EmailJS template ID
+                {
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    phone: formData.phone || "Not provided",
+                    message: formData.message,
+                    to_email: agencyInfo.email,
+                    subject: `New Quote Request from ${formData.name}`,
+                }
+            );
+
+            if (result.status !== 200) {
+                throw new Error("Failed to send message");
+            }
+
+            // Show success message
+            setFormSuccess(true);
+
+            // Reset after showing success message
+            setTimeout(() => {
+                setShowQuoteModal(false);
+                setFormSuccess(false);
+                setFormData({
+                    name: "",
+                    email: "",
+                    phone: "",
+                    message: "",
+                });
+            }, 3000);
+        } catch (error) {
+            console.error("Error sending form:", error);
+            alert(
+                "Sorry, there was a problem sending your message. Please try again or contact us directly at " +
+                    agencyInfo.email
+            );
+            setIsSubmitting(false);
         }
     };
 
@@ -175,6 +251,16 @@ export default function Navigation() {
                             </motion.button>
                         );
                     })}
+
+                    {/* CTA Button - Desktop */}
+                    <motion.button
+                        onClick={handleQuoteClick}
+                        className="ml-4 px-4 py-2 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium rounded-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-all duration-300"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        Get a Free Quote
+                    </motion.button>
                 </motion.div>
             </motion.nav>
 
@@ -294,10 +380,10 @@ export default function Navigation() {
                                 whileTap={{ scale: 0.98 }}
                                 onClick={() => {
                                     setIsOpen(false);
-                                    handleNavClick("#contact");
+                                    handleQuoteClick();
                                 }}
                             >
-                                Start Your Project
+                                Get a Free Quote
                             </motion.button>
                         </div>
                     </div>
@@ -313,6 +399,163 @@ export default function Navigation() {
                     exit={{ opacity: 0 }}
                     onClick={() => setIsOpen(false)}
                 />
+            )}
+
+            {/* Quote Modal */}
+            {showQuoteModal && (
+                <div className="fixed inset-0 flex items-center justify-center z-50">
+                    <motion.div
+                        className="fixed inset-0 bg-black/70 backdrop-blur-md"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setShowQuoteModal(false)}
+                    />
+
+                    <motion.div
+                        className="relative bg-black/80 border border-white/10 rounded-xl p-6 max-w-md w-full mx-4 neon-glass-card"
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.9, opacity: 0 }}
+                        transition={{
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 30,
+                        }}
+                    >
+                        <button
+                            className="absolute top-4 right-4 text-white/70 hover:text-white"
+                            onClick={() => setShowQuoteModal(false)}
+                        >
+                            <X className="w-5 h-5" />
+                        </button>
+
+                        <div className="text-center mb-6">
+                            <h3 className="text-xl font-bold text-white">
+                                Get Your Free Quote
+                            </h3>
+                            <p className="text-white/70 text-sm mt-2">
+                                Fill out this form and we&apos;ll get back to
+                                you within 24 hours with a custom quote.
+                            </p>
+                        </div>
+
+                        {formSuccess ? (
+                            <motion.div
+                                className="text-center py-8"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                            >
+                                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-8 w-8 text-white"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M5 13l4 4L19 7"
+                                        />
+                                    </svg>
+                                </div>
+                                <h4 className="text-xl font-bold text-white mb-2">
+                                    Quote Request Sent!
+                                </h4>
+                                <p className="text-white/70">
+                                    Thank you for your interest. We&apos;ll
+                                    contact you shortly with your custom quote.
+                                </p>
+                            </motion.div>
+                        ) : (
+                            <form
+                                onSubmit={handleSubmitQuote}
+                                className="space-y-4"
+                            >
+                                <div>
+                                    <Input
+                                        type="text"
+                                        name="name"
+                                        placeholder="Your Name"
+                                        value={formData.name}
+                                        onChange={handleInputChange}
+                                        required
+                                        className="bg-white/5 border-white/10 text-white placeholder:text-white/50"
+                                    />
+                                </div>
+                                <div>
+                                    <Input
+                                        type="email"
+                                        name="email"
+                                        placeholder="Email Address"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
+                                        required
+                                        className="bg-white/5 border-white/10 text-white placeholder:text-white/50"
+                                    />
+                                </div>
+                                <div>
+                                    <Input
+                                        type="tel"
+                                        name="phone"
+                                        placeholder="Phone Number"
+                                        value={formData.phone}
+                                        onChange={handleInputChange}
+                                        className="bg-white/5 border-white/10 text-white placeholder:text-white/50"
+                                    />
+                                </div>
+                                <div>
+                                    <Textarea
+                                        name="message"
+                                        placeholder="Tell us about your project"
+                                        value={formData.message}
+                                        onChange={handleInputChange}
+                                        required
+                                        className="bg-white/5 border-white/10 text-white placeholder:text-white/50 min-h-[100px]"
+                                    />
+                                </div>
+                                <motion.button
+                                    type="submit"
+                                    className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-medium py-3 rounded-lg flex items-center justify-center"
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    disabled={isSubmitting}
+                                >
+                                    {isSubmitting ? (
+                                        <svg
+                                            className="animate-spin h-5 w-5 text-white"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            fill="none"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <circle
+                                                className="opacity-25"
+                                                cx="12"
+                                                cy="12"
+                                                r="10"
+                                                stroke="currentColor"
+                                                strokeWidth="4"
+                                            ></circle>
+                                            <path
+                                                className="opacity-75"
+                                                fill="currentColor"
+                                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                                            ></path>
+                                        </svg>
+                                    ) : (
+                                        <>
+                                            Send Quote Request{" "}
+                                            <Send className="ml-2 h-4 w-4" />
+                                        </>
+                                    )}
+                                </motion.button>
+                            </form>
+                        )}
+                    </motion.div>
+                </div>
             )}
         </>
     );
