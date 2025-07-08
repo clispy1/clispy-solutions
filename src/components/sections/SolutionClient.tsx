@@ -46,7 +46,8 @@ export default function SolutionClient() {
                         <br /> <strong>
                             You&apos;re missing out on trust
                         </strong>{" "}
-                        — the one thing customers need to click "Buy."
+                        — the one thing customers need to click
+                        &ldquo;Buy.&rdquo;
                     </p>
                 </motion.div>
                 <h2 className="heading-lg mb-6 text-center">
