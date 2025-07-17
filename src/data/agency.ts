@@ -43,7 +43,7 @@ export const agencyInfo = {
                 "30 days support",
                 "Launch checklist (free bonus)",
             ],
-            price: "₵3,500",
+            price: "₵2,997",
             delivery: "14–21 days",
         },
         {
@@ -58,7 +58,7 @@ export const agencyInfo = {
                 "Style guide",
                 "Canva templates (bonus)",
             ],
-            price: "₵2,000",
+            price: "₵1,997",
             delivery: "7–10 days",
         },
         {
@@ -73,7 +73,7 @@ export const agencyInfo = {
                 "Product upload (10 max)",
                 "30 days support",
             ],
-            price: "₵4,000",
+            price: "₵3,997",
             delivery: "14–21 days",
         },
     ],
