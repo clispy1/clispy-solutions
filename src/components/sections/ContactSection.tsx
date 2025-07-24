@@ -482,7 +482,7 @@ export default function ContactSection() {
                                             Location
                                         </p>
                                         <p className="text-muted text-sm">
-                                            {agencyInfo.location}
+                                            Accra - {agencyInfo.location}
                                         </p>
                                         <p className="text-subtle text-xs">
                                             Serving clients globally
@@ -510,7 +510,7 @@ export default function ContactSection() {
                         </Card>
 
                         {/* Social Media */}
-                        <Card className="neon-glass-card p-6">
+                        {/* <Card className="neon-glass-card p-6">
                             <h4 className="heading-sm text-white mb-4">
                                 Follow Our Journey
                             </h4>
@@ -560,7 +560,7 @@ export default function ContactSection() {
                                     </span>
                                 </a>
                             </div>
-                        </Card>
+                        </Card> */}
 
                         {/* Quick Contact CTA */}
                         <Card className="neon-glass-card p-6 text-center">

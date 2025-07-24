@@ -34,7 +34,7 @@ export default function SolutionClient() {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <h2 className="heading-lg mb-6">
+                    <h2 className="heading-lg mb-6 text-white">
                         Here&apos;s the Harsh Truth...
                     </h2>
                     <p className="text-responsive text-white/60 max-w-2xl mx-auto">
@@ -50,7 +50,7 @@ export default function SolutionClient() {
                         &ldquo;Buy.&rdquo;
                     </p>
                 </motion.div>
-                <h2 className="heading-lg mb-6 text-center">
+                <h2 className="heading-lg mb-6 text-center text-white">
                     What You Actually Get:
                 </h2>
                 <motion.div

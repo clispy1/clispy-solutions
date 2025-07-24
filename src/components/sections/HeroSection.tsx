@@ -36,7 +36,7 @@ const HeroSection = () => {
 
                         {/* Main Heading */}
                         <div className="space-y-4">
-                            <h1 className="heading-xl">
+                            <h1 className="heading-xl text-white">
                                 <span className="block">
                                     {agencyInfo.marketingLines.hero.headline}
                                 </span>
