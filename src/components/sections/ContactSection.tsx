@@ -7,14 +7,14 @@ import {
     ArrowRight,
     Mail,
     MapPin,
-    Github,
-    Linkedin,
-    Instagram,
+    // Github,
+    // Linkedin,
+    // Instagram,
     Send,
     Clock,
     Globe,
     MessageCircleMore,
-    Facebook,
+    // Facebook,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
