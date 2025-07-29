@@ -1,5 +1,3 @@
-"use client";
-
 import * as motion from "motion/react-client";
 import { agencyInfo } from "@/data/agency";
 import Image from "next/image";

@@ -1,5 +1,3 @@
-"use client";
-
 import * as motion from "motion/react-client";
 import { ArrowRight, Users, Award, Sparkles, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
