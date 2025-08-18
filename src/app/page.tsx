@@ -1,4 +1,3 @@
-// "use client";
 import { Suspense } from "react";
 import { Metadata } from "next";
 import Navigation from "@/components/Navigation";
@@ -62,12 +61,12 @@ export default function Portfolio() {
                         <ProjectsSection />
                     </section>
 
-                    <section id="services" aria-label="Our Services">
-                        <ServicesSection />
-                    </section>
-
                     <section id="testimonials" aria-label="Client Testimonials">
                         <TestimonialsSection />
+                    </section>
+
+                    <section id="services" aria-label="Our Services">
+                        <ServicesSection />
                     </section>
 
                     <section id="cta" aria-label="Call To Action">

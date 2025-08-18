@@ -43,14 +43,14 @@ const HeroSection = () => {
                                 <p className="text-responsive text-white/90 font-light">
                                     {agencyInfo.marketingLines.hero.subheadline}
                                 </p>
-                                <p className="text-lg text-primary font-medium">
+                                {/* <p className="text-lg text-primary font-medium">
                                     Founded & Led by {agencyInfo.founder.name}
-                                </p>
+                                </p> */}
                             </div>
                         </div>
 
                         {/* Stats */}
-                        <div className="grid grid-cols-4 gap-4 py-6 max-w-lg mx-auto lg:mx-0">
+                        <div className="grid grid-cols-4 gap-4 py-4 max-w-lg mx-auto lg:mx-0">
                             {[
                                 {
                                     number: agencyInfo.stats.projects,
@@ -83,7 +83,7 @@ const HeroSection = () => {
                                     }}
                                 >
                                     <stat.icon className="w-4 h-4 text-primary mx-auto mb-1" />
-                                    <div className="text-xl font-bold neon-text">
+                                    <div className="text-xl font-bold text-white">
                                         {stat.number}
                                     </div>
                                     <div className="text-subtle text-xs">
@@ -104,7 +104,7 @@ const HeroSection = () => {
                                     href="#projects"
                                     className="flex items-center"
                                 >
-                                    View Recent Projects
+                                    View Websites We&apos;ve Built
                                     <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                                 </Link>
                             </Button>
@@ -120,7 +120,7 @@ const HeroSection = () => {
                                     className="flex items-center"
                                 >
                                     <PhoneCall className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform hover-glow" />
-                                    Let&apos;s Build Something Real
+                                    Contact Us Now...
                                 </Link>
                             </Button>
                         </div>

@@ -179,4 +179,19 @@ export const projects: Project[] = [
         featured: true,
         results: "Showcased school ethos and simplified admission enquiries.",
     },
+    {
+        id: 12,
+        title: "TrainLive GH",
+        description: "A guided workout trainging with expert trainers",
+        longDescription:
+            "Mama Jane International School is a basic education institution in Kasoa offering early childhood and primary education. The site highlights academic programs, enrolment, and school philosophy.",
+        category: "web",
+        technologies: ["Custom Code", "React", "TailwindCSS"],
+        image: "/mamajaneint.png",
+        liveUrl: "https://trainlivegh.com",
+        githubUrl: "",
+        year: "2025",
+        featured: true,
+        results: "Coming Soon",
+    },
 ];

@@ -64,7 +64,7 @@ export default function PricingClient({ pricingPlans }: PricingClientProps) {
                     </h2>
                     <p className="text-responsive text-white/70 max-w-3xl mx-auto">
                         You&apos;re not here for theory — you&apos;re here to
-                        look legit, get booked, or start selling...
+                        look credible, get booked, or start selling...
                         <br /> No confusing packages. No hidden fees. Just
                         honest pricing for real results.
                     </p>
