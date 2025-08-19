@@ -186,9 +186,9 @@ export const projects: Project[] = [
         longDescription:
             "Mama Jane International School is a basic education institution in Kasoa offering early childhood and primary education. The site highlights academic programs, enrolment, and school philosophy.",
         category: "web",
-        technologies: ["Custom Code", "React", "TailwindCSS"],
-        image: "/mamajaneint.png",
-        liveUrl: "https://trainlivegh.com",
+        technologies: ["Custom Code", "Next.JS", "TailwindCSS"],
+        image: "/train-live.png",
+        liveUrl: "https://train-live-gh.vercel.app",
         githubUrl: "",
         year: "2025",
         featured: true,
