@@ -182,9 +182,9 @@ export const projects: Project[] = [
     {
         id: 12,
         title: "TrainLive GH",
-        description: "A guided workout trainging with expert trainers",
+        description: "A guided workout training with expert trainers",
         longDescription:
-            "Mama Jane International School is a basic education institution in Kasoa offering early childhood and primary education. The site highlights academic programs, enrolment, and school philosophy.",
+            "TrainLive is a guided workout training app that allows users to train with expert trainers from the comfort of their home.",
         category: "web",
         technologies: ["Custom Code", "Next.JS", "TailwindCSS"],
         image: "/train-live.png",
