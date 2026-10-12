@@ -42,7 +42,7 @@ All animation lives in `js/motion.js` and the "Motion layer" block at the end of
 
 Taken from each client's live site. Amonu shows its shop section and Prime JB the section below its video. Replace any of them with your own images using the same file names.
 
-## Please confirm before publishing
+## Please confirm before publishing.
 
 - **Guarantees:** "Revisions until you love it" (within agreed pages and features) and "On time, or 10% off" (the date moves if waiting on the client).
 - **Hero project tracker:** it is labelled "Example" and shows how a project moves through the five steps. The shop orders, ad chart and care log in Services are illustrations too.
