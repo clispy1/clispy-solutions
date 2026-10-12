@@ -8,6 +8,7 @@ index.html          home: hero with project tracker, why it matters, services, s
 work.html           all 12 projects with filters; each opens the case study (a bottom sheet on phones)
 websites-for-*.html  industry pages for search: moving companies, real estate, schools and colleges.
                     Built from the same header and footer as work.html. Add each new page to sitemap.xml
+how-much-does-a-website-cost.html  pricing guide for search. Keep the prices, exchange rate and "Updated" date current.
 css/site.css        all styles: same design language as the MTA dashboard (glass panels, thin borders,
                     bento grids, mono numbers), violet accent, light and dark mode
 js/site.js          menu, light/dark switch, scroll reveals, form, WhatsApp message, filters, popup
