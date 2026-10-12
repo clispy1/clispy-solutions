@@ -27,7 +27,6 @@ Search tags (title, description, canonical, link-preview image and structured da
 
 | What | Where | How |
 |---|---|---|
-| Founder photo | About section | Save as `images/jake.jpg` and replace the `JA` initials with `<img src="images/jake.jpg" alt="Jake Asare, founder of Clispy Solutions">`. |
 | Form email delivery | `#contact-form` | The form confirms on screen, and "Send on WhatsApp instead" already works. For email delivery, set the form's `action` to a form service such as Formspree. |
 
 ## Popups

@@ -271,9 +271,9 @@
       const full = answer.offsetHeight;
       const from = startH != null ? startH : (opening ? 0 : full);
       const to = opening ? full : 0;
-      const frame = h => ({ height: h + 'px', paddingBottom: h ? pad : '0px', opacity: h ? 1 : 0, transform: h ? 'none' : 'translateY(-6px)' });
+      const frame = h => ({ height: h + 'px', paddingBottom: h ? pad : '0px', opacity: h ? 1 : 0 });
       answer.style.overflow = 'hidden';
-      run = answer.animate([frame(from), frame(to)], { duration: opening ? 380 : 280, easing: ease, fill: 'forwards' });
+      run = answer.animate([frame(from), frame(to)], { duration: opening ? 220 : 170, easing: 'cubic-bezier(0.32, 0.72, 0, 1)', fill: 'forwards' });
       const anim = run;
       anim.onfinish = () => {
         if (!opening) { item.open = false; item.classList.remove('is-closing'); }
