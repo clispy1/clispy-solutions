@@ -6,6 +6,8 @@ Static site: plain HTML, CSS and a small script. Open `index.html` in a browser,
 index.html          home: hero with project tracker, why it matters, services, selected work, process,
                     pricing table and guarantees, testimonials, about, free review form, FAQ
 work.html           all 12 projects with filters; each opens the case study (a bottom sheet on phones)
+websites-for-*.html  industry pages for search: moving companies, real estate, schools and colleges.
+                    Built from the same header and footer as work.html. Add each new page to sitemap.xml
 css/site.css        all styles: same design language as the MTA dashboard (glass panels, thin borders,
                     bento grids, mono numbers), violet accent, light and dark mode
 js/site.js          menu, light/dark switch, scroll reveals, form, WhatsApp message, filters, popup
