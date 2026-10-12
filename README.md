@@ -30,6 +30,12 @@ Search tags (title, description, canonical, link-preview image and structured da
 | Founder photo | About section | Save as `images/jake.jpg` and replace the `JA` initials with `<img src="images/jake.jpg" alt="Jake Asare, founder of Clispy Solutions">`. |
 | Form email delivery | `#contact-form` | The form confirms on screen, and "Send on WhatsApp instead" already works. For email delivery, set the form's `action` to a form service such as Formspree. |
 
+## Popups
+
+The free-review form and the pricing table open as popups on the home page. Any link or button that points at `#contact` or `#pricing` opens the matching popup, including links from other pages (the choice of review or project, and the package, carries over). To open one from a new button, add `data-open-modal="contact"` or `data-open-modal="pricing"`; add `data-intent="review"` or `"project"` to preselect the form. The popups live in the `<dialog data-modal>` elements at the end of `index.html`.
+
+FAQ answers open and close with a short height animation (`js/site.js`). It switches itself off for visitors who turn on "reduce motion".
+
 ## Light and dark mode
 
 The site follows the visitor's phone or computer setting. The sun/moon button in the menu bar switches it and remembers the choice.

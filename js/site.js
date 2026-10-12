@@ -72,6 +72,7 @@
 
   /* ---------- Contact form ---------- */
 
+  let applyIntent = () => {};
   const form = $('#contact-form');
   if (form) {
     const intentInputs = $$('input[name="intent"]', form);
@@ -86,6 +87,11 @@
       if (btn) btn.textContent = intent === 'review' ? 'Get my free review' : 'Send my project details';
     };
     intentInputs.forEach(i => i.addEventListener('change', syncIntent));
+    applyIntent = (intent, plan) => {
+      const input = intentInputs.find(i => i.value === intent);
+      if (input) { input.checked = true; syncIntent(); }
+      if (plan && form.elements.package) form.elements.package.value = plan;
+    };
 
     // "Get a free review" / "Start a project" links preselect the right tab
     document.addEventListener('click', e => {
@@ -172,6 +178,111 @@
 
   const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const ease = 'cubic-bezier(0.2, 0.8, 0.2, 1)';
+
+  /* ---------- Modals: contact form and pricing ---------- */
+
+  const modals = {};
+  $$('dialog[data-modal]').forEach(d => { modals[d.dataset.modal] = d; });
+  const keep = (k, v) => { try { if (v == null) sessionStorage.removeItem(k); else sessionStorage.setItem(k, v); } catch (e) { /* storage blocked */ } };
+  const recall = k => { try { return sessionStorage.getItem(k); } catch (e) { return null; } };
+
+  function openModal(name) {
+    const d = modals[name];
+    if (!d) return false;
+    $$('dialog[open]').forEach(o => { if (o !== d) o.close(); });
+    if (!d.open) { if (typeof d.showModal === 'function') d.showModal(); else d.setAttribute('open', ''); }
+    const sc = $('.dialog-scroll', d);
+    if (sc) sc.scrollTop = 0;
+    return true;
+  }
+
+  function closeModal(d) {
+    if (!d.open || d.classList.contains('closing')) return;
+    if (calm) { d.close(); return; }
+    d.classList.add('closing');
+    const finish = () => { d.classList.remove('closing'); d.close(); };
+    const onEnd = e => { if (e.target !== d) return; d.removeEventListener('animationend', onEnd); finish(); };
+    d.addEventListener('animationend', onEnd);
+    setTimeout(() => { if (d.classList.contains('closing')) { d.removeEventListener('animationend', onEnd); finish(); } }, 450);
+  }
+
+  Object.keys(modals).forEach(key => {
+    const d = modals[key];
+    d.addEventListener('click', e => { if (e.target === d || e.target.closest('[data-dialog-close]')) closeModal(d); });
+    d.addEventListener('cancel', e => { e.preventDefault(); closeModal(d); });
+    d.addEventListener('close', () => {
+      if (/^#(contact|pricing)$/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search);
+    });
+  });
+
+  // Any link or button that points at #contact or #pricing opens the matching modal.
+  // On pages without the modal, the choice is remembered and the link goes to the home page.
+  document.addEventListener('click', e => {
+    const el = e.target.closest('a[href], [data-open-modal]');
+    if (!el || e.defaultPrevented) return;
+    let name = el.dataset.openModal;
+    if (!name) {
+      const href = el.getAttribute('href') || '';
+      const at = href.indexOf('#');
+      if (at === -1) return;
+      const page = href.slice(0, at);
+      if (page && page !== 'index.html' && page !== location.pathname.split('/').pop()) return;
+      const hash = href.slice(at);
+      name = hash === '#contact' ? 'contact' : hash === '#pricing' ? 'pricing' : '';
+      if (!name) return;
+    }
+    if (name === 'contact' && !modals.contact) { keep('clispy.intent', el.dataset.intent || null); keep('clispy.plan', el.dataset.plan || null); return; }
+    if (!modals[name]) return;
+    e.preventDefault();
+    openModal(name);
+  });
+
+  // Arriving on the home page with #contact or #pricing in the address opens the modal
+  function openFromHash() {
+    const name = location.hash === '#contact' ? 'contact' : location.hash === '#pricing' ? 'pricing' : '';
+    if (!name || !modals[name]) return;
+    if (name === 'contact') {
+      applyIntent(recall('clispy.intent'), recall('clispy.plan'));
+      keep('clispy.intent', null); keep('clispy.plan', null);
+    }
+    const go = () => openModal(name);
+    if (!root.classList.contains('fx-preload')) { go(); return; }
+    const wait = setInterval(() => { if (!root.classList.contains('fx-preload')) { clearInterval(wait); go(); } }, 200);
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+
+  /* ---------- FAQ: answers open and close smoothly ---------- */
+
+  $$('.faq-item').forEach(item => {
+    const summary = $('summary', item);
+    const answer = $('.answer', item);
+    if (!summary || !answer) return;
+    let run = null;
+    summary.addEventListener('click', e => {
+      if (calm || !('animate' in Element.prototype)) return;
+      e.preventDefault();
+      const startH = run ? answer.getBoundingClientRect().height : null;
+      if (run) { run.onfinish = null; run.cancel(); run = null; }
+      const opening = !(item.open && !item.classList.contains('is-closing'));
+      item.classList.toggle('is-closing', !opening);
+      if (opening) item.open = true;
+      const pad = getComputedStyle(answer).paddingBottom;
+      const full = answer.offsetHeight;
+      const from = startH != null ? startH : (opening ? 0 : full);
+      const to = opening ? full : 0;
+      const frame = h => ({ height: h + 'px', paddingBottom: h ? pad : '0px', opacity: h ? 1 : 0, transform: h ? 'none' : 'translateY(-6px)' });
+      answer.style.overflow = 'hidden';
+      run = answer.animate([frame(from), frame(to)], { duration: opening ? 380 : 280, easing: ease, fill: 'forwards' });
+      const anim = run;
+      anim.onfinish = () => {
+        if (!opening) { item.open = false; item.classList.remove('is-closing'); }
+        anim.cancel();
+        answer.style.overflow = '';
+        if (run === anim) run = null;
+      };
+    });
+  });
 
   /* ---------- Work page: filters (cards glide to their new places) ---------- */
 

@@ -148,20 +148,20 @@
       lenis.scrollTo(target, { offset: -80, duration: 1.4 });
       history.pushState(null, '', url.hash);
     });
-    const dlg = $('.dialog-scroll');
-    if (dlg) dlg.setAttribute('data-lenis-prevent', '');
+    document.querySelectorAll('.dialog-scroll').forEach(el => el.setAttribute('data-lenis-prevent', ''));
   } else {
     root.classList.remove('fx-smooth');
   }
 
-  // Pause smooth scrolling and the custom cursor while the case study is open
-  const caseDialog = $('#case-dialog');
-  if (caseDialog) {
-    new MutationObserver(() => {
-      const open = caseDialog.hasAttribute('open');
+  // Pause smooth scrolling and the custom cursor while any popup (case study, form, pricing) is open
+  const popups = Array.from(document.querySelectorAll('dialog'));
+  if (popups.length) {
+    const sync = () => {
+      const open = popups.some(p => p.hasAttribute('open'));
       if (lenis) { if (open) lenis.stop(); else lenis.start(); }
       root.classList.toggle('dialog-open', open);
-    }).observe(caseDialog, { attributes: true, attributeFilter: ['open'] });
+    };
+    popups.forEach(p => new MutationObserver(sync).observe(p, { attributes: true, attributeFilter: ['open'] }));
   }
 
   /* ---------- 1. Scroll into the screen ---------- */
