@@ -103,8 +103,7 @@
     pre.className = 'preloader';
     pre.setAttribute('aria-hidden', 'true');
     pre.innerHTML = `
-      <div class="pre-mark"><span>c</span></div>
-      <div class="pre-name mono">Clispy Solutions</div>
+      <div class="pre-mark"><img src="images/logo-large.png" alt="" width="516" height="227"></div>
       <div class="pre-foot mono"><span class="pre-count">000</span><span>Websites that win customers</span></div>
       <div class="pre-line"><i></i></div>`;
     document.body.append(pre);

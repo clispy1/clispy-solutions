@@ -12,13 +12,18 @@ js/site.js          menu, light/dark switch, scroll reveals, form, WhatsApp mess
 js/motion.js        animations only (headline reveals, hero tilt, counters, parallax, cursor light,
                     magnetic buttons). Delete its script tag to turn all animation off.
 images/work/        screenshots of each client's live site (1440 × 900)
+images/             logo.png (nav and footer), logo-512.png (structured data), og-image.png (link previews),
+                    favicon.png and apple-touch-icon.png
+robots.txt          lets search engines in and points to the sitemap
+sitemap.xml         the two pages search engines should index. Add a line here whenever you add a page.
 ```
+
+Search tags (title, description, canonical, link-preview image and structured data) sit in the `<head>` of each page.
 
 ## Still to add
 
 | What | Where | How |
 |---|---|---|
-| Logo | Nav and footer | Replace the `brand-mark` span with `<img src="images/logo.svg" alt="Clispy Solutions" height="34">`. A comment marks the spot. |
 | Founder photo | About section | Save as `images/jake.jpg` and replace the `JA` initials with `<img src="images/jake.jpg" alt="Jake Asare, founder of Clispy Solutions">`. |
 | Form email delivery | `#contact-form` | The form confirms on screen, and "Send on WhatsApp instead" already works. For email delivery, set the form's `action` to a form service such as Formspree. |
 
